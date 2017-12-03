@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">	
+		<title>Twinsight</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Twinsight</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="devplan.html">Development Plan</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="jumbotron text-center">
+			<h1>Twinsight Project Details</h1>
+			<p><i>Twitter Insight</i></p>
+			<p>Twitter scraper for visualizing location and keywords</p>
+		</div>
+		<div class="container">
+			<p>
+				<h3><a href="http://dsg1.crc.nd.edu/cse30246/twinsight/index.html">Project Demo URL</a></h3>
+			</p>
+			<p>
+				Our application domain is: We will create a database of information scraped from content on Twitter. We will use this data base to perform sentiment analysis and provide data visualization in a web app. 
+			</p>	
+			<p>
+				Our project is useful because it will allow searching and data visualization of a complex social media platform. There is similar functionality found on tweepsmap.com that maps the followers and tweets linked to your account so you can get information such as location, influence, and demographics -- all this is to figure out "how well your audience interacts with you". We will be doing something difference by getting all Tweets of a certain attribute. We are thinking of using "football" or "Notre Dame".
+			</p>
+			<p>
+				Our data will be coming from Twitter itself, and we will be using different apis to access the Twitter database.
+			</p>
+			<p>
+				Our basic functions will include:
+					- Insert: our program will scrape Twitter and insert the data into our database.
+					- Update: we can have update functionality but it won't make sense in our context.
+					- Delete: we will delete the data that we find inconsequential for our needs.
+					- Search: we will search through all Tweets that we have on our database based on certain attributes.
+				Our advanced functions will include:
+					- Automatic scrape: upload, and sanitize data based on attributes (we were thinking location and keywords)
+					- Data visualization: we will have a frontend web application that will create a heat maps and show the location of the Tweet that we have scraped and how "positive" or "negative" they are in regards to a certain football team.
+			</p>
+		</div>
+		<div class="container text-center">
+			<img src="erdiagram.png" alt="ER Diagram" width="80%" height="80%">
+		</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</html>

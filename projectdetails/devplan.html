@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">	
+		<title>Twinsight</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">Twinsight</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#">Development Plan</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="jumbotron text-center">
+			<h1>Twinsight Development Details</h1>
+		</div>
+		<div class="container">
+			<h2>Relational Schema</h2>
+			<p>Tweets(Retweets, Timestamp, Location, Text, <u>TweetID</u>, Likes)</p>
+			<p>Users(Name, <u>UserID</u>, Location, NumberOfFollowers)</p>
+			<p>Writes(TweetID, <u>UserID</u>)</p>
+			<p>Hashtag(<u>TweetID</u>, tagText)</p>
+			<h2>Choice of Databases, Platforms, and Languages</h2>
+			<p>We'll be using MySQL on dsg1 as our back-end. We will be implementing our front-end with HTML, JavaScript, and CSS. The Twitter Scrapper will be an implementation of Tweepy (a Python package). We will use Python to query and modify our backend from the front end.</p>
+			<h2>Data Source</h2>
+			<p>We will scrape Twitter for our data. We are currently looking to scrape Tweets on Notre Dame game days, but we will be looking to extend our functionality.</p>
+			<h2>Labor Division</h2>
+			<p>Alanna would focus on the scraping and writing the data to the database, Mara would like to work on the communication between the front-end and the back-end, and Kevin would like to focus on the front-end. The duties will mix with each other, but we think this is a good start for division of labor.</p>
+			<h2>Project Timeline</h2>
+			<p>10/13/2017 - Tables created and filled with dummy data</p>
+			<p>10/27/2017 - Front-end that displays basic functionality</p>
+			<p>11/03/2017 - Advanced functionality start / UI improved</p>
+			<p>11/18/2017 - All parts connected, most functionality implemented</p>
+			<p>12/15/2017 - Project polished and in release form</p>
+		</div>	
+	</body>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</html>
