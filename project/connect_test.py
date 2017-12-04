@@ -7,6 +7,9 @@ db = MySQLdb.connect("localhost", "mstaines", "#1Smarty", "twinsight")
 c = db.cursor()
 
 class MyRequestHandler(BaseHTTPRequestHandler):
+	def end_headers (self):
+		self.send_header('Access-Control-Allow-Origin', '*')
+		BaseHTTPRequestHandler.end_headers(self)
 	def do_GET(self):
 		message = {"Hello" : "World"}
 		message = json.dumps(message)
@@ -26,12 +29,23 @@ class MyRequestHandler(BaseHTTPRequestHandler):
 			new_data = c.fetchall()
 		self.send_response(200)
 		self.end_headers()
-		self.wfile.write(json.dumps(new_data))
+		#print new_data
+		#new_data = new_data.decode('latin1')
+		self.wfile.write(json.dumps(new_data, encoding="latin1"))
+		return
+	def do_OPTIONS(self):
+		print 'GOT OPTION'
+		self.send_response(200, "ok")
+		self.send_header("Access-Control-Allow-Origin", "*");
+		self.send_header("Content-Type", "text/plain");
+		self.send_header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+		self.send_header("Access-Control-Allow-Methods", "GET, PUT, POST");
+		self.end_headers()
 		return
 
 def run():
 	print 'http server is starting'
-	server_address = ('127.0.0.1', 2000)
+	server_address = ('0.0.0.0', 8000)
 	httpd = HTTPServer(server_address, MyRequestHandler)
 	print('http server is running...')
 	httpd.serve_forever()
