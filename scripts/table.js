@@ -14,7 +14,8 @@ function getParameterByName(name, url) {
 
 var xhr = new XMLHttpRequest();
   
-xhr.open("POST", "https://localhost:2000", true);
+
+xhr.open("POST", "http://localhost:2000", true);
 
 xhr.onreadystatechange = function() {
   if(xhr.readyState == 4 && xhr.status == 200) {
@@ -40,4 +41,5 @@ else if(game == 'navy')
 else if(game == 'stanford')
   xhr.send(null);
 
+console.log(JSON.stringify(data));
 xhr.send(JSON.stringify(data))
