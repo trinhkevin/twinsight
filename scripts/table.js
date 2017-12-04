@@ -14,7 +14,7 @@ function getParameterByName(name, url) {
 
 var xhr = new XMLHttpRequest();
   
-xhr.open("POST", "http://dsg1.crc.nd.edu:2000", true);
+xhr.open("POST", "localhost:2000", true);
 
 xhr.onreadystatechange = function() {
   if(xhr.readyState == 4 && xhr.status == 200) {
@@ -29,15 +29,15 @@ xhr.onerror = function(e) {
 
 game = getParameterByName('game');
 
-var params = new FormData();
+var data = {}
 
 if(game == 'miami')
-  params.append('query', 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location \
+  data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location \
     FROM tweets2, users2 \
-    WHERE tweets2.userid = users2.userid;');
+    WHERE tweets2.userid = users2.userid;'
 else if(game == 'navy')
   xhr.send(null);
 else if(game == 'stanford')
   xhr.send(null);
 
-xhr.send(params)
+xhr.send(JSON.stringify(data))
