@@ -18,7 +18,7 @@ xhr.open("POST", "http://dsg1.crc.nd.edu:8000", true);
 
 xhr.onreadystatechange = function() {
   if(xhr.readyState == 4 && xhr.status == 200) {
-    var res = xhr.responseText;
+    var res = JSON.loads(xhr.responseText);
     console.log(res)
   }
 }
@@ -33,7 +33,7 @@ game = getParameterByName('game');
 var data = {}
 
 if(game == 'miami')
-  data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.userid = users2.userid LIMIT 10;'
+  data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.userid = users2.userid;'
 else if(game == 'navy')
   xhr.send(null);
 else if(game == 'stanford')
