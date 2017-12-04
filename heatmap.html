@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <!--- CSS --->
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/heatmap.css">
 
     <!--- Pacifico Font --->
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -23,11 +23,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="heatmapDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Heatmap</a>
+          <li class="nav-item active dropdown">
+            <a class="nav-link dropdown-toggle active" id="heatmapDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Heatmap <span class="sr-only">(current)</span></a>
             <div class="dropdown-menu" aria-labelledby="heatmapDropdown">
               <a class="dropdown-item" href="heatmap.html?game=miami">Notre Dame vs. Miami FL</a>
               <a class="dropdown-item" href="heatmap.html?game=navy">Notre Dame vs. Navy</a>
@@ -46,25 +46,14 @@
       </div>
     </nav>
 
-    <!--- Jumbotron --->
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container-fluid">
-        <h1 class="display-3">Welcome to <span style="font-family: Pacifico;">Twinsight.</span></h1>
-        <p class="lead">Twinsight is a web application that displays tweet information related to Notre Dame home games. Currently we support the following games from the 2017 season:
-          <ul>
-            <li>Notre Dame vs. Miami FL</li>
-            <li>Notre Dame vs. Navy</li>
-            <li>Notre Dame vs. Stanford</li>
-          </ul>
-        </p>
-        
-
-        <p class="lead text-center">
-          <a class="btn btn-primary btn-lg" href="heatmap.html?game=wakeforest" role="button">Get started</a>
-        </p>
-      </div>
+    <!--- Board --->
+    <div class="container-fluid" style="height:20vh" id="status">
+      <img align="left" src="logos/notredame.png" style="height:50px;width:50px">
     </div>
 
+    <!--- Map --->
+    <div id="map" class="container-fluid" style="height:70vh;margin:0 auto" align="center"></div>
+    
     <!--- BootStrap dependencies --->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -72,5 +61,8 @@
 
     <!--- Google Maps --->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfayov9S0biTCYmf3n7t8Kerr-0ws8R3s&libraries=visualization"></script>
+
+    <!--- Main --->
+    <script type="text/javascript" src="scripts/heatmap.js"></script>
   </body>
 </html>

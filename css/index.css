@@ -1,0 +1,15 @@
+.jumbotron {
+	background-image: url("../images/home_bg.png");
+	background-size: cover;
+	color: white;
+	height: 95vh;
+	margin-bottom: 0
+}
+
+.jumbotron .container-fluid {
+	padding-top: 5%;
+}
+
+hr {
+	border-color: white;
+}
