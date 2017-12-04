@@ -14,7 +14,6 @@ function getParameterByName(name, url) {
 
 var xhr = new XMLHttpRequest();
   
-
 xhr.open("POST", "http://localhost:2000", true);
 
 xhr.onreadystatechange = function() {
