@@ -18,7 +18,7 @@ xhr.open("POST", "http://dsg1.crc.nd.edu:8000", true);
 
 xhr.onreadystatechange = function() {
   if(xhr.readyState == 4 && xhr.status == 200) {
-    var res = JSON.loads(xhr.responseText);
+    var res = JSON.parse(xhr.responseText);
     console.log(res)
   }
 }
