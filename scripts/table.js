@@ -33,7 +33,7 @@ game = getParameterByName('game');
 var data = {}
 
 if(game == 'miami')
-  data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.userid = users2.userid;'
+  data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.userid = users2.userid LIMIT 10;'
 else if(game == 'navy')
   xhr.send(null);
 else if(game == 'stanford')
