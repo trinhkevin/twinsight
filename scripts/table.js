@@ -1,4 +1,4 @@
-// Gets URL Query Variables
+// Gets URL query variables
 function getParameterByName(name, url) {
     if(!url) 
       url = window.location.href;
@@ -12,21 +12,9 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// Text Sanitizer
+// Text sanitizer
 var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
-
-var tagOrComment = new RegExp(
-    '<(?:'
-    // Comment body.
-    + '!--(?:(?:-*[^->])*--+|-?)'
-    // Special "raw text" elements whose content should be elided.
-    + '|script\\b' + tagBody + '>[\\s\\S]*?</script\\s*'
-    + '|style\\b' + tagBody + '>[\\s\\S]*?</style\\s*'
-    // Regular name
-    + '|/?[a-z]'
-    + tagBody
-    + ')>',
-    'gi');
+var tagOrComment = new RegExp('<(?:!--(?:(?:-*[^->])*--+|-?)|script\\b' + tagBody + '>[\\s\\S]*?</script\\s*|style\\b' + tagBody + '>[\\s\\S]*?</style\\s*|/?[a-z]' + tagBody + ')>', 'gi');
 
 function removeTags(html) {
   var oldHtml;
@@ -37,19 +25,10 @@ function removeTags(html) {
   return html.replace(/</g, '&lt;');
 }
 
-$(document).ready(function() {
+$(function() {
 
-  // Edit Localizations of BootStrap Table
-  $('#table').bootstrapTable({
-    formatNoMatches: function() { 
-      return "Fetching tweets, please wait...";
-    },
-    formatSearch: function() {
-      return "Search tweets";
-    }
-  });
+  $('#table').bootstrapTable('showLoading');
 
-  // POST Request
   var xhr = new XMLHttpRequest();
 
   xhr.open("POST", "http://dsg1.crc.nd.edu:8000", true);
@@ -64,19 +43,16 @@ $(document).ready(function() {
         // res[i][3] location
 
         // String conversion
-        if(data[i][0] != null) {
+        if(data[i][0] != null)
           data[i][0] = removeTags(data[i][0].toString());
-        }
-        if(data[i][1] != null) {
+        if(data[i][1] != null)
           data[i][1] = removeTags(data[i][1].toString());
-        }
-        if(data[i][2] != null) {
+        if(data[i][2] != null)
           data[i][2] = removeTags(data[i][2].toString());
-        }
-        if(data[i][3] != null) {
+        if(data[i][3] != null)
           data[i][3] = removeTags(data[i][3].toString());
-        }
 
+        // Insert into table
         $('#table').bootstrapTable('insertRow', {
           index: 0,
           row: {
@@ -89,7 +65,7 @@ $(document).ready(function() {
       }
     }
 
-    console.log('Table loaded.')
+    $('#table').bootstrapTable('hideLoading');
   }
 
   xhr.onerror = function(e) {
@@ -97,11 +73,12 @@ $(document).ready(function() {
     console.error(xhr.statusText);
   }
 
-  // Get Game
+  // Get game option
   game = getParameterByName('game');
 
   var data = {}
 
+  // Change POST request based on game
   if(game == 'miami')
     data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
   else if(game == 'navy')
@@ -109,7 +86,7 @@ $(document).ready(function() {
   else if(game == 'stanford')
     data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
 
-  // Send Reqest
+  // Send request
   xhr.send(JSON.stringify(data));
 
 });
