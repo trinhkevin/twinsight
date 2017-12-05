@@ -127,7 +127,7 @@ async function runHeatmap() {
 
   // Data points (array of [Latitude, Longitude] objects)
   var heatmapData = [];
-  var c = ~~(data.length/100);
+  var c = ~~(data.length/50);
 
   for(var i = 0; i < data.length; ++i) {
 
