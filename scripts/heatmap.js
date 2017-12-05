@@ -90,7 +90,7 @@ function initHeatmap() {
   var heatmapData = [];
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: new google.maps.LatLng(0, 0),
+    center: new google.maps.LatLng(25, 0),
     zoom: 2,
     mapTypeId: 'roadmap'
   });
