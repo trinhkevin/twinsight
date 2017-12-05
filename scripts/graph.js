@@ -47,7 +47,6 @@ function initDataset(game) {
     if(xhr.readyState == 4 && xhr.status == 200) {
       data = JSON.parse(xhr.responseText);
       drawGraph(data);
-      console.log(data);
     }
   }
 
