@@ -47,12 +47,32 @@
     </nav>
 
     <!-- Board -->
-    <div class="container-fluid" style="height:20vh" id="status">
-      <img align="left" src="images/notredame.png" style="height:50px;width:50px">
+    <div class="container-fluid" id="status">
+      <div class="container" id="teams">
+        <image src="images/notredame.png" alt="Notre Dame">
+        <span>vs.</span>
+        <image id="opposing-team" alt="Op">
+        <span id="date"></span>
+      </div>
+      <div class="container" id="time">
+        <span></span>
+      </div>
+      <select class="form-control btn btn-primary">
+        <option value="2">Very slow</option>
+        <option value="1.5">Slow</option>
+        <option value="1" selected>Normal</option>
+        <option value="0.5">Fast</option>
+        <option value="0.25">Very fast</option>
+      </select>
+      <button type="button" class="btn btn-success float-right" onclick="runHeatmap()" style="right:0;" disabled>Run <i class="fa fa-play" aria-hidden="true"></i></button>
     </div>
 
+    <!-- Alerts -->
+    <div class="alert alert-success fade show" role="alert"></div>
+    <div class="alert alert-danger fade show" role="alert"></div>
+
     <!-- Map -->
-    <div id="map" class="container-fluid" style="height:70vh;margin:0 auto" align="center"></div>
+    <div id="map" class="container-fluid" style="height:82vh;margin:0 auto" align="center"></div>
     
     <!-- BootStrap dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -61,6 +81,9 @@
 
     <!-- Google Maps -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfayov9S0biTCYmf3n7t8Kerr-0ws8R3s&libraries=visualization"></script>
+
+    <!-- FontAwesome -->
+    <script src="https://use.fontawesome.com/0be3b8ec5a.js"></script>
 
     <!-- Main -->
     <script type="text/javascript" src="scripts/heatmap.js"></script>

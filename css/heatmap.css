@@ -1,8 +1,52 @@
 #status {
 	margin: 0;
+	background: #212529;
+	height: 10vh;
+	line-height: 10vh;
+	display: flex;
+    align-items: center;
 }
 
 #status img {
-	display: flex;
-	align-items: center
+	height: 5vh;
+	width: 5vh;
+	margin: 1vh;
+}
+
+#date {
+	font-size: 100%;
+	font-style: italic;
+	color: white;
+}
+
+#status button {
+	margin-left: auto;
+}
+
+#status #teams span {
+	color: white;
+}
+
+#time {
+	margin: 0 auto;
+}
+
+#time span {
+	color: white;
+	font-size: 200%;
+}
+
+#status select {
+	margin-right: 1vh;
+	width: 30vh;
+}
+
+.alert {
+	position: fixed;
+    bottom: 2vh;
+    right: 6%;
+    width: 80%;
+    z-index: 9999;
+    display: none;
+    font-size: 12px;
 }

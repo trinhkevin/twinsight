@@ -27,6 +27,8 @@ function removeTags(html) {
 // Creates table
 function initTable(type) {
 
+  console.log($('.dropdown-menu a').text());
+
   // type 0 random
   // type 1 highest
   // type -1 lowest
@@ -83,39 +85,39 @@ function initTable(type) {
   // Get game option
   game = getParameterByName('game');
 
-  var data = {}
+  var req = {}
 
   // Change POST request based on game
   if(game == 'miami') {
     if(type == 0)
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
     else if(type == -1)
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
     else
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
   }
   else if(game == 'navy') {
     if(type == 0)
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
     else if(type == -1)
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
     else
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
   }
   else if(game == 'stanford') {
     if(type == 0)
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
     else if(type == -1)
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
     else
-      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
+      req['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
   }
 
   // Send request
-  xhr.send(JSON.stringify(data));
+  xhr.send(JSON.stringify(req));
 }
 
 $(function() {
   initTable(0);
-  $('[data-toggle="tooltip"]').tooltip(); 
+  $('[data-toggle="tooltip"]').tooltip();
 });
