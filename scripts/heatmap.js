@@ -113,23 +113,21 @@ function convertTo12Hour(date) {
   var minutes = date.split(":")[1];
   var seconds = date.split(":")[2];
 
-  if(hours <= 12) {
-    var period = " AM";
-  }
-  else {
-    var period = " PM";
-  }
+  var suffix = (hours >= 12) ? ' PM' : ' AM';
 
-  hours = ((hours + 11) % 12 + 1);
+  hours = (hours > 12) ? hours - 12 : hours;
 
-  return hours + ":" + minutes + ":" + seconds + period;
+  hours = (hours == '00') ? 12 : hours;
+
+  return hours + ":" + minutes + ":" + seconds + suffix;
 }
 
 // Runs animated heatmap
 async function runHeatmap() {
 
   // Data points (array of [Latitude, Longitude] objects)
-  var heatmapData = []; 
+  var heatmapData = [];
+  var c = ~~(data.length/100);
 
   for(var i = 0; i < data.length; ++i) {
 
@@ -139,35 +137,42 @@ async function runHeatmap() {
     // data[i][3] sentiment
     // data[i][4] tweet text
 
-    // Hide the alerts
-    $('.alert-danger').hide()
-    $('.alert-success').hide()
-
-    // Set time
-    $('#time span').text(convertTo12Hour(data[i][0]));
-
     heatmapData.push(new google.maps.LatLng(data[i][1], data[i][2]));
 
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: heatmapData
-    });
+    if(i % c == 0) {
 
-    heatmap.setMap(map);
+      // Hide the alerts
+      $('.alert-danger').hide()
+      $('.alert-success').hide()
 
-    // Alert with tweet text / show
-    if(data[i][3] < 0) {
-      console.log(data[i][3]);
-      $('.alert-danger').text(removeTags(data[i][4]));
-      $('.alert-danger').show();
+      // Set time
+      $('#time span').text(convertTo12Hour(data[i][0]));
+
+      var heatmap = new google.maps.visualization.HeatmapLayer({
+        data: heatmapData
+      });
+
+      heatmap.setMap(map);
+
+      // Alert with tweet text / show
+      if(data[i][3] < 0) {
+        $('.alert-danger').text(removeTags(data[i][4]));
+        $('.alert-danger').show();
+      }
+      else if(data[i][3] > 0) {
+        $('.alert-success').text(removeTags(data[i][4]));
+        $('.alert-success').show();
+      }
+
+      await sleep($('#status select').val() * 100);
     }
-    else if(data[i][3] > 0) {
-      console.log(data[i][3]);
-      $('.alert-success').text(removeTags(data[i][4]));
-      $('.alert-success').show();
-    }
-
-    await sleep($('#status select').val() * 10);
   }
+
+  // Hide the alerts
+  $('.alert-danger').hide();
+  $('.alert-success').hide();
+
+  console.log("Heatmap visusalization complete.");
 }
 
 // Data is global
