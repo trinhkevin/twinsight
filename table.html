@@ -9,6 +9,12 @@
     <!-- BootStrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+    <!-- BootStrap Table -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/table.css">
+
     <!-- Pacifico Font -->
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   </head>
@@ -44,6 +50,24 @@
       </div>
     </nav>
 
+    <div class="container-fluid" id="table-container">
+      <table id="table"
+             data-toggle="table"
+             data-locale="en-US"
+             data-toolbar="#toolbar"
+             data-height="80vh"
+             data-search="true">
+        <thead>
+          <tr>
+              <th data-field="tweet" data-sortable="true">Tweet <i class="fa fa-twitter"></i></th>
+              <th data-field="name" data-sortable="true">Name</th>
+              <th data-field="sentiment" data-sortable="true">Sentiment <i class="fa fa-smile-o"></i></th>
+              <th data-field="location" data-sortable="true">Location <i class="fa fa-map-marker"></i></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
     <!-- BootStrap dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -51,6 +75,13 @@
 
     <!-- Google Maps -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfayov9S0biTCYmf3n7t8Kerr-0ws8R3s&libraries=visualization"></script>
+
+    <!-- BootStrap Table -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <!-- FontAwesome -->
+    <script src="https://use.fontawesome.com/0be3b8ec5a.js"></script>
 
     <!-- Main -->
     <script type="text/javascript" src="scripts/table.js"></script>
