@@ -12,6 +12,31 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+// Set opposing team image / date
+function setImage(game) {
+
+  // Change image based on game / set date
+  if(game == 'miami') {
+    $('#opposing-team').attr('src', 'images/miami.png');
+
+    $('#date').text("November 11th, 2017");
+  }
+  else if(game == 'navy') {
+    // Navy logo is sized weird so we had to change some css / date
+    $('#opposing-team').attr('src', 'images/navy.png');
+    $('#opposing-team').css('height', '8vh');
+    $('#opposing-team').css('width', '8vh');
+    $('#opposing-team').css('margin', '0');
+
+    $('#date').text("November 18th, 2017");
+  } 
+  else if(game == 'stanford') {
+    $('#opposing-team').attr('src', 'images/stanford.png');
+
+    $('#date').text("November 25th, 2017");
+  }
+}
+
 // Text sanitizer
 function removeTags(html) {
   var tagBody       = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
@@ -26,8 +51,6 @@ function removeTags(html) {
 
 // Creates table
 function initTable(type) {
-
-  console.log($('.dropdown-menu a').text());
 
   // type 0 random
   // type 1 highest
@@ -86,6 +109,8 @@ function initTable(type) {
   game = getParameterByName('game');
 
   var req = {}
+
+  setImage(game);
 
   // Change POST request based on game
   if(game == 'miami') {

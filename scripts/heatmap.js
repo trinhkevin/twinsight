@@ -25,7 +25,7 @@ function removeTags(html) {
 }
 
 // Set opposing team image / date
-function setImage(game) {
+function setInfo(game) {
 
   // Change image based on game / set date
   if(game == 'miami') {
@@ -178,7 +178,7 @@ $(function() {
   // Get game option
   game = getParameterByName('game');
   
-  setImage(game);
+  setInfo(game);
 
   initDataset(game);
 

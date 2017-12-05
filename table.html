@@ -52,10 +52,14 @@
 
     <div class="container-fluid" id="table-container">
       <div id="toolbar">
-          <button type="button" class="btn btn-danger" onclick="initTable(-1)">Lowest <i class="fa fa-frown-o"></i></button>
-          <button type="button" class="btn btn-info" onclick="initTable(0)">Random <i class="fa fa-meh-o"></i></button>
-          <button type="button" class="btn btn-success" onclick="initTable(1)">Highest <i class="fa fa-smile-o"></i></button>
-          <button type="button" class="btn" data-toggle="tooltip" data-placement="right" title="Please note: this table only displays 100 tweets due to performance reasons."><i class="fa fa-question-circle-o"></i></button>
+        <img src="images/notredame.png" alt="Notre Dame">
+        <span>vs.</span>
+        <img id="opposing-team" alt="Op">
+        <span id="date"></span>
+        <button type="button" class="btn btn-danger" onclick="initTable(-1)">Lowest <i class="fa fa-frown-o"></i></button>
+        <button type="button" class="btn btn-warning" onclick="initTable(0)">Random <i class="fa fa-meh-o"></i></button>
+        <button type="button" class="btn btn-success" onclick="initTable(1)">Highest <i class="fa fa-smile-o"></i></button>
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="right" title="Please note: this table only displays 100 tweets due to performance reasons."><i class="fa fa-question-circle-o"></i></button>
       </div>
       <table id="table"
              data-toggle="table"

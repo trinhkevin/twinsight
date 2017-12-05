@@ -5,3 +5,15 @@
 #table-container {
 	padding-bottom: 2vh;
 }
+
+#toolbar img {
+	height: 5vh;
+	width: 5vh;
+	margin: 1vh;
+}
+
+#date {
+	font-size: 100%;
+	font-style: italic;
+	margin-right: 20%;
+}
