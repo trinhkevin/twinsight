@@ -13,10 +13,9 @@ function getParameterByName(name, url) {
 }
 
 // Text sanitizer
-var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
-var tagOrComment = new RegExp('<(?:!--(?:(?:-*[^->])*--+|-?)|script\\b' + tagBody + '>[\\s\\S]*?</script\\s*|style\\b' + tagBody + '>[\\s\\S]*?</style\\s*|/?[a-z]' + tagBody + ')>', 'gi');
-
 function removeTags(html) {
+  var tagBody       = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
+  var tagOrComment  = new RegExp('<(?:!--(?:(?:-*[^->])*--+|-?)|script\\b' + tagBody + '>[\\s\\S]*?</script\\s*|style\\b' + tagBody + '>[\\s\\S]*?</style\\s*|/?[a-z]' + tagBody + ')>', 'gi');
   var oldHtml;
   do {
     oldHtml = html;
@@ -25,9 +24,17 @@ function removeTags(html) {
   return html.replace(/</g, '&lt;');
 }
 
-$(function() {
+// Creates table
+function initTable(type) {
+
+  // type 0 random
+  // type 1 highest
+  // type -1 lowest
 
   $('#table').bootstrapTable('showLoading');
+
+  // Clear table
+  $('#table').bootstrapTable('removeAll');
 
   var xhr = new XMLHttpRequest();
 
@@ -79,14 +86,36 @@ $(function() {
   var data = {}
 
   // Change POST request based on game
-  if(game == 'miami')
-    data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
-  else if(game == 'navy')
-    data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
-  else if(game == 'stanford')
-    data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
+  if(game == 'miami') {
+    if(type == 0)
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
+    else if(type == -1)
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
+    else
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-10 00:00:00" AND tweets2.timestamp <= "2017-11-12 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
+  }
+  else if(game == 'navy') {
+    if(type == 0)
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
+    else if(type == -1)
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
+    else
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-17 00:00:00" AND tweets2.timestamp <= "2017-11-19 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
+  }
+  else if(game == 'stanford') {
+    if(type == 0)
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY RAND() limit 100;'
+    else if(type == -1)
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment ASC limit 100;'
+    else
+      data['query'] = 'SELECT tweets2.text, users2.name, tweets2.sentiment, users2.location FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-24 00:00:00" AND tweets2.timestamp <= "2017-11-26 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL ORDER BY tweets2.sentiment DESC limit 100;'
+  }
 
   // Send request
   xhr.send(JSON.stringify(data));
+}
 
+$(function() {
+  initTable(0);
+  $('[data-toggle="tooltip"]').tooltip(); 
 });
