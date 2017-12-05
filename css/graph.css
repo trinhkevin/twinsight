@@ -1,0 +1,23 @@
+#status {
+	margin-top: 2vh;
+}
+
+#status img {
+	height: 5vh;
+	width: 5vh;
+	margin: 1vh;
+}
+
+#status #teams {
+	margin: 0;
+	padding: 0;
+}
+
+#graph {
+	height: 500px;
+	width: 100%;
+}
+
+#graph-container {
+	margin: 2vh;
+}

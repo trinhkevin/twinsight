@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Twinsight</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/graph.css">
 
     <!-- Pacifico Font -->
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -23,8 +24,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="heatmapDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Heatmap</a>
@@ -42,8 +43,8 @@
               <a class="dropdown-item" href="table.html?game=stanford">Notre Dame vs. Stanford</a>
             </div>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="tableDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Graph</a>
+          <li class="nav-item active dropdown">
+            <a class="nav-link dropdown-toggle" id="tableDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Graph <span class="sr-only">(current)</span></a>
             <div class="dropdown-menu" aria-labelledby="tableDropdown">
               <a class="dropdown-item" href="graph.html?game=miami">Notre Dame vs. Miami FL</a>
               <a class="dropdown-item" href="graph.html?game=navy">Notre Dame vs. Navy</a>
@@ -54,26 +55,33 @@
       </div>
     </nav>
 
-    <!-- Jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container-fluid">
-        <h1 class="display-3">Welcome to <span style="font-family: Pacifico;">Twinsight.</span></h1>
-        <p class="lead">Twinsight is a web application that displays tweet information related to Notre Dame football games. Currently we support the following games from the 2017 season:
-          <ul>
-            <li>Notre Dame vs. Miami FL (November 11th, 2017)</li>
-            <li>Notre Dame vs. Navy (November 18th, 2017)</li>
-            <li>Notre Dame vs. Stanford (November 25th, 2017)</li>
-          </ul>
-        </p>
-        <p class="lead text-center">
-          <a class="btn btn-primary btn-lg" href="heatmap.html?game=miami" role="button">Get started</a>
-        </p>
+    <div class="container-fluid" id="status">
+      <div class="container" id="teams">
+        <img src="images/notredame.png" alt="Notre Dame">
+        <span>vs.</span>
+        <img id="opposing-team" alt="Op">
+        <span id="date"></span>
       </div>
+      <div class="container" id="time">
+        <span></span>
+      </div>
+    </div>
+
+    <!-- Graph -->
+    <div class="container-fluid" id="graph-container">
+      <div class="container" id="graph" align="center"></div>
     </div>
 
     <!-- BootStrap dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- Flot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js" integrity="sha256-LMe2LItsvOs1WDRhgNXulB8wFpq885Pib0bnrjETvfI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js" integrity="sha256-gCrSjRo/Z6W7Cfc1oEL6BH8HKjgiiO+ItV8A+z9Scpw=" crossorigin="anonymous"></script>
+
+    <!-- Main -->
+    <script type="text/javascript" src="scripts/graph.js"></script>
   </body>
 </html>
