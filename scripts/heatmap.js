@@ -131,7 +131,7 @@ async function runHeatmap() {
   // Data points (array of [Latitude, Longitude] objects)
   var heatmapData = []; 
 
-  for(var i = start; i < data.length; ++i) {
+  for(var i = 0; i < data.length; ++i) {
 
     // data[i][0] timestamp
     // data[i][1] latitude
@@ -166,7 +166,7 @@ async function runHeatmap() {
       $('.alert-success').show();
     }
 
-    await sleep($('#status select').val() * 500);
+    await sleep($('#status select').val() * 10);
   }
 }
 
