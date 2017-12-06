@@ -59,13 +59,13 @@ function initDataset(game) {
 
   // Change POST request based on game / time
   if(game == 'miami') {
-    req['query'] = 'SELECT UNIX_TIMESTAMP(tweets2.timestamp) * 1000 as time, AVG(tweets2.sentiment) AS avg_sent FROM tweets2 WHERE tweets2.timestamp >= "2017-11-11 00:00:00" AND tweets2.timestamp <= "2017-11-11 23:59:59" AND tweets2.sentiment IS NOT NULL AND tweets2.timestamp IS NOT NULL GROUP BY UNIX_TIMESTAMP(tweets2.timestamp) DIV 60 ORDER BY time ASC;'
+    req['query'] = 'SELECT (UNIX_TIMESTAMP(tweets2.timestamp) * 1000) - 18000000 as time, AVG(tweets2.sentiment) AS avg_sent FROM tweets2 WHERE tweets2.timestamp >= "2017-11-11 00:05:00" AND tweets2.timestamp <= "2017-11-12 04:59:59" AND tweets2.sentiment IS NOT NULL AND tweets2.timestamp IS NOT NULL GROUP BY UNIX_TIMESTAMP(tweets2.timestamp) DIV 60 ORDER BY time ASC;'
   }
   else if(game == 'navy') {
-    req['query'] = 'SELECT UNIX_TIMESTAMP(tweets2.timestamp) * 1000 as time, AVG(tweets2.sentiment) AS avg_sent FROM tweets2 WHERE tweets2.timestamp >= "2017-11-18 00:00:00" AND tweets2.timestamp <= "2017-11-18 23:59:59" AND tweets2.sentiment IS NOT NULL AND tweets2.timestamp IS NOT NULL GROUP BY UNIX_TIMESTAMP(tweets2.timestamp) DIV 60 ORDER BY time ASC;'
+    req['query'] = 'SELECT (UNIX_TIMESTAMP(tweets2.timestamp) * 1000) - 18000000 as time, AVG(tweets2.sentiment) AS avg_sent FROM tweets2 WHERE tweets2.timestamp >= "2017-11-18 00:05:00" AND tweets2.timestamp <= "2017-11-19 04:59:59" AND tweets2.sentiment IS NOT NULL AND tweets2.timestamp IS NOT NULL GROUP BY UNIX_TIMESTAMP(tweets2.timestamp) DIV 60 ORDER BY time ASC;'
   }
   else if(game == 'stanford') {
-    req['query'] = 'SELECT UNIX_TIMESTAMP(tweets2.timestamp) * 1000 as time, AVG(tweets2.sentiment) AS avg_sent FROM tweets2 WHERE tweets2.timestamp >= "2017-11-25 00:00:00" AND tweets2.timestamp <= "2017-11-25 23:59:59" AND tweets2.sentiment IS NOT NULL AND tweets2.timestamp IS NOT NULL GROUP BY UNIX_TIMESTAMP(tweets2.timestamp) DIV 60 ORDER BY time ASC;'
+    req['query'] = 'SELECT (UNIX_TIMESTAMP(tweets2.timestamp) * 1000) - 18000000 as time, AVG(tweets2.sentiment) AS avg_sent FROM tweets2 WHERE tweets2.timestamp >= "2017-11-25 00:05:00" AND tweets2.timestamp <= "2017-11-26 04:59:59" AND tweets2.sentiment IS NOT NULL AND tweets2.timestamp IS NOT NULL GROUP BY UNIX_TIMESTAMP(tweets2.timestamp) DIV 60 ORDER BY time ASC;'
   }
 
   // Send request
@@ -77,8 +77,7 @@ function drawGraph(data) {
   var options = {
     xaxis: {
       mode: "time",
-      timezone: "browser",
-      timeformat: "%I:%M:%S %P",
+      timeformat: "%I:%M:%S %P"
     }
   }
 

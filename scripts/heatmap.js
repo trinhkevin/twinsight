@@ -73,11 +73,11 @@ function initDataset(game) {
 
   // Change POST request based on game
   if(game == 'miami')
-    req['query'] = 'SELECT DATE_FORMAT(tweets2.timestamp, "%H:%i:%s") as time, users2.latitude, users2.longitude, tweets2.sentiment, tweets2.text FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-11 00:00:00" AND tweets2.timestamp <= "2017-11-11 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL AND users2.latitude IS NOT NULL AND users2.longitude IS NOT NULL AND tweets2.timestamp IS NOT NULL ORDER BY time ASC;'
+    req['query'] = 'SELECT UNIX_TIMESTAMP(tweets2.timestamp) * 1000 as time, users2.latitude, users2.longitude, tweets2.sentiment, tweets2.text FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-11 00:05:00" AND tweets2.timestamp <= "2017-11-12 04:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL AND users2.latitude IS NOT NULL AND users2.longitude IS NOT NULL AND tweets2.timestamp IS NOT NULL ORDER BY time ASC;'
   else if(game == 'navy')
-    req['query'] = 'SELECT DATE_FORMAT(tweets2.timestamp, "%H:%i:%s") as time, users2.latitude, users2.longitude, tweets2.sentiment, tweets2.text FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-18 00:00:00" AND tweets2.timestamp <= "2017-11-18 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL AND users2.latitude IS NOT NULL AND users2.longitude IS NOT NULL AND tweets2.timestamp IS NOT NULL ORDER BY time ASC;'
+    req['query'] = 'SELECT UNIX_TIMESTAMP(tweets2.timestamp) * 1000 as time, users2.latitude, users2.longitude, tweets2.sentiment, tweets2.text FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-18 00:05:00" AND tweets2.timestamp <= "2017-11-19 04:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL AND users2.latitude IS NOT NULL AND users2.longitude IS NOT NULL AND tweets2.timestamp IS NOT NULL ORDER BY time ASC;'
   else if(game == 'stanford')
-    req['query'] = 'SELECT DATE_FORMAT(tweets2.timestamp, "%H:%i:%s") as time, users2.latitude, users2.longitude, tweets2.sentiment, tweets2.text FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-25 00:00:00" AND tweets2.timestamp <= "2017-11-25 23:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL AND users2.latitude IS NOT NULL AND users2.longitude IS NOT NULL AND tweets2.timestamp IS NOT NULL ORDER BY time ASC;'
+    req['query'] = 'SELECT UNIX_TIMESTAMP(tweets2.timestamp) * 1000 as time, users2.latitude, users2.longitude, tweets2.sentiment, tweets2.text FROM tweets2, users2 WHERE tweets2.timestamp >= "2017-11-25 00:05:00" AND tweets2.timestamp <= "2017-11-26 04:59:59" AND tweets2.userid = users2.userid AND tweets2.sentiment IS NOT NULL AND users2.latitude IS NOT NULL AND users2.longitude IS NOT NULL AND tweets2.timestamp IS NOT NULL ORDER BY time ASC;'
 
   // Send request
   xhr.send(JSON.stringify(req));
@@ -146,7 +146,7 @@ async function runHeatmap() {
       $('.alert-success').hide()
 
       // Set time
-      $('#time span').text(convertTo12Hour(data[i][0]));
+      $('#time span').text(new Date(data[i][0] - 18000000).toLocaleTimeString('en-US'));
 
       var heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
